@@ -1,5 +1,4 @@
 package br.ufpb.dcx.ayla.posto;
-
 import java.util.Collection;
 
 
@@ -16,4 +15,5 @@ public interface SistemaGerenciadorDeAtendimentos {
             Data diaAtendimento);
     public int contaAtendimentosDaCategoria(CategoriaAtendimento categoria);
 }
+
 
