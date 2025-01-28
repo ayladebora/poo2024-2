@@ -38,7 +38,7 @@ public class SistemaGerenciadorAtendimentosPostoRioTinto implements
 
     @Override
     public void cadastrarAtendimento(String codigoFicha, CategoriaAtendimento categoria, String cpfPaciente, String crmMedico, Data diaAtendimento) throws MedicoNaoCadastradoException, AtendimentoJaCadastradoException {
-        //TODO
+        //TODO - Lembrar de implementar
     }
 
     @Override
