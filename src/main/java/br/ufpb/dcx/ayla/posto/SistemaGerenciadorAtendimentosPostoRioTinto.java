@@ -33,12 +33,33 @@ public class SistemaGerenciadorAtendimentosPostoRioTinto implements
     @Override
     public int contaAtendimentosDeMedicoNoMes(String crmMedico, int mes, int ano) {
         //TODO
-        return 0;
+        int contAtendimentos = 0;
+        for (AtendimentoMedico at: this.atendimentos.values()){
+            if (at.getCrmMedico().equals(crmMedico)){
+                Data dataAt = at.getDiaAtendimento();
+                if (dataAt.getMes()==mes && dataAt.getAno()==ano){
+                    contAtendimentos++;
+                }
+            }
+        }
+        return contAtendimentos;
     }
 
     @Override
-    public void cadastrarAtendimento(String codigoFicha, CategoriaAtendimento categoria, String cpfPaciente, String crmMedico, Data diaAtendimento) throws MedicoNaoCadastradoException, AtendimentoJaCadastradoException {
-        //TODO - Lembrar de implementar
+    public void cadastrarAtendimento(String codigoFicha, CategoriaAtendimento categoria, String cpfPaciente,
+                                     String crmMedico, Data diaAtendimento) throws MedicoNaoCadastradoException,
+            AtendimentoJaCadastradoException {
+
+        if (!this.medicos.containsKey(crmMedico)){
+            throw new MedicoNaoCadastradoException("Não existe médico com o CRM "+ crmMedico+" no sistema");
+        }
+        if (this.atendimentos.containsKey(codigoFicha)){
+            throw new AtendimentoJaCadastradoException("Já existe atendimento para a ficha "+codigoFicha);
+        } else {
+            this.atendimentos.put(codigoFicha, new AtendimentoMedico(codigoFicha,
+                    categoria, cpfPaciente, crmMedico, diaAtendimento));
+        }
+
     }
 
     @Override
