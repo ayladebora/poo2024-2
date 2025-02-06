@@ -1,5 +1,10 @@
 package br.ufpb.dcx.ayla.sisprof;
 
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+import java.util.LinkedList;
+
 public class SistemaGerenciaProfsMapTest {
 
     @Test
@@ -22,11 +27,28 @@ public class SistemaGerenciaProfsMapTest {
 
             //iv)
             List<String> disciplinasDeJoseDepois = sistema.consultaNomesDisciplinasDoProfessor(111);
-            assert(1, disciplinasDeJoseDepois.size());
+            assertEquals(1, disciplinasDeJoseDepois.size());
             assertTrue(disciplinasDeJoseDepois.get(0).equals("POO"));
 
+            //v)
 
-        } catch (ProfessorJaExisteException | DisciplinaJaExisteException e){
+            List <Horario> horariosJose = sistema.consultaHorariosDeAulaDoProfessor(111);
+            assertEquals(2, horariosJose.size());
+            Horario primeiroHorario= horariosJose.get(0);
+            Horario segundoHorario = horariosJose.get(1);
+            assertEquals(horarioAula1, primeiroHorario);
+            assertEquals(horarioAula2, segundoHorario);
+            assertTrue(horariosJose.get(0).getDia()== DiaDaSemana.TERCA);
+            assertTrue(horariosJose.get(1).getDia()== DiaDaSemana.TERCA);
+            assertTrue(horariosJose.get(0).getHoraInicio()==10);
+            assertTrue(horariosJose.get(0).getHoraFim()==12);
+            assertTrue(horariosJose.get(1).getHoraInicio()==13);
+            assertTrue(horariosJose.get(1).getHoraFim()==15);
+
+
+
+
+        } catch (ProfessorJaExisteException | DisciplinaJaExisteException  | ProfessorInexistenteException e){
             e.printStackTrace();
             fail("Exceção não esperada");
         }

@@ -1,5 +1,10 @@
 package br.ufpb.dcx.ayla.sisprof;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
+
 public class SistemaGerenciaProfsMap implements SistemaGerenciaProfs {
 
     private Map <Integer, Professor> professores = new HashMap<>();
@@ -15,6 +20,11 @@ public class SistemaGerenciaProfsMap implements SistemaGerenciaProfs {
     }
     public List<Horario> consultaHorariosDeAulaDoProfessor(int matriculaProf)
             throws ProfessorInexistenteException{
+
+        if (!this.professores.containsKey(matriculaProf)){
+            throw new ProfessorInexistenteException("Não existe professor com a matrícula "+matriculaProf);
+        }
+
         List <Horario> horarios = new LinkedList<>();
         for (Disciplina d: this.disciplinas.values()){
             if (d.getMatriculaProfessor() == matriculaProf){
@@ -34,6 +44,15 @@ public class SistemaGerenciaProfsMap implements SistemaGerenciaProfs {
         return nomesDisciplinas;
     }
 
+    @Override
+    public void cadastraProfessor(int matriculaProf, String nome) throws ProfessorJaExisteException {
+        if (this.professores.containsKey(matriculaProf)){
+            throw new ProfessorJaExisteException("Já existe professor com a matrícula "+ matriculaProf);
+        } else {
+            this.professores.put(matriculaProf, new Professor(nome, matriculaProf));
+        }
+    }
+
     public void cadastraDisciplina(String nomeDisciplina, int codigoDisciplina,
                                    int matriculaProfessor, List<Horario> horarios) throws
             DisciplinaJaExisteException{
@@ -44,6 +63,16 @@ public class SistemaGerenciaProfsMap implements SistemaGerenciaProfs {
             this.disciplinas.put(codigoDisciplina, new Disciplina(nomeDisciplina, codigoDisciplina, matriculaProfessor, horarios));
         }
 
+    }
+
+    @Override
+    public Disciplina pesquisaDisciplina(int codigoDisciplina) throws DisciplinaInexistenteException {
+        Disciplina d = this.disciplinas.get(codigoDisciplina);
+        if (d==null){
+            throw new DisciplinaInexistenteException("Não existe disciplina com o código "+ codigoDisciplina);
+        } else {
+            return d;
+        }
     }
 
 }
