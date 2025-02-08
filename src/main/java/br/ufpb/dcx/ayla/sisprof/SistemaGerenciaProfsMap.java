@@ -55,7 +55,7 @@ public class SistemaGerenciaProfsMap implements SistemaGerenciaProfs {
 
     public void cadastraDisciplina(String nomeDisciplina, int codigoDisciplina,
                                    int matriculaProfessor, List<Horario> horarios) throws
-            DisciplinaJaExisteException{
+            DisciplinaJaExisteException {
 
         if (this.disciplinas.containsKey(codigoDisciplina)){
             throw new DisciplinaJaExisteException("Já existe a disciplina com código "+ codigoDisciplina);

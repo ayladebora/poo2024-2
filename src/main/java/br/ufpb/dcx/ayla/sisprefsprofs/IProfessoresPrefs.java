@@ -1,4 +1,11 @@
-package br.ufpb.dcx.ayla.sisprof;
+package br.ufpb.dcx.ayla.sisprefsprofs;
+
+import java.util.Collection;
+import br.ufpb.dcx.ayla.sisprof.DisciplinaJaExisteException;
+import br.ufpb.dcx.ayla.sisprof.ProfessorJaExisteException;
+import br.ufpb.dcx.ayla.sisprof.ProfessorInexistenteException;
+import br.ufpb.dcx.ayla.sisprof.DisciplinaInexistenteException;
+
 public interface IProfessoresPrefs {
 
     public void cadastraDisciplina(String codDisciplina, String nomeDisciplina)

@@ -48,7 +48,7 @@ public class SistemaGerenciaProfsMapTest {
 
 
 
-        } catch (ProfessorJaExisteException | DisciplinaJaExisteException  | ProfessorInexistenteException e){
+        } catch (ProfessorJaExisteException | DisciplinaJaExisteException | ProfessorInexistenteException e){
             e.printStackTrace();
             fail("Exceção não esperada");
         }

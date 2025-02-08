@@ -1,4 +1,4 @@
-package br.ufpb.dcx.ayla.sisprof;
+package br.ufpb.dcx.ayla.sisprefsprofs;
 
 public class AreaExistenteException extends  Exception{
 
