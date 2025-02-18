@@ -1,5 +1,6 @@
 package br.ufpb.dcx.ayla.roupas;
 
+import java.util.List;
 public interface SistemaLojaRoupas {
     public List <Roupa> pesquisaRoupasPorTamanho(Tamanho tamanhoRoupa);
     public List <Roupa> pesquisaRoupasComDescricaoComecandoCom(
@@ -7,7 +8,7 @@ public interface SistemaLojaRoupas {
     public Tamanho consultaTamanhoDaRoupa(String codigoRoupa)
             throws RoupaInexistenteException;
     public void cadastraRoupa(String codigoRoupa, String descricao,
-                              Tamanho tamanho, int quantidade) throws RoupaJaExisteException;
+                              int quantidade, Tamanho tamanho) throws RoupaJaExisteException;
     public void alteraQuantidadeDeRoupaNoEstoque(String codigoRoupa,
                                                  int novaQuantidade) throws RoupaInexistenteException;
     public int pesquisaQuantidadeDeRoupaNoEstoque(String codigoRoupa)
